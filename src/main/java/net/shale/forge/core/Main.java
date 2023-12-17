@@ -21,6 +21,8 @@ public class Main {
     public Main() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        //item.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
