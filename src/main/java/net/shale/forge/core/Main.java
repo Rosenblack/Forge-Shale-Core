@@ -1,6 +1,10 @@
 package net.shale.forge.core;
 
 import com.mojang.logging.LogUtils;
+import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -11,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.shale.forge.core.items.general;
 import org.slf4j.Logger;
 
 @Mod(Main.MOD_ID)
@@ -21,7 +26,7 @@ public class Main {
     public Main() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        //item.register(modEventBus);
+        general.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -49,7 +54,12 @@ public class Main {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            CustomPortalBuilder.beginPortal()
+                    .frameBlock(Blocks.DIAMOND_BLOCK)
+                    .lightWithItem(Items.ENDER_EYE)
+                    .destDimID(new ResourceLocation("the_end"))
+                    .tintColor(45,65,101)
+                    .registerPortal();
         }
     }
 }
