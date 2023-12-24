@@ -55,10 +55,10 @@ public class Main {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             CustomPortalBuilder.beginPortal()
-                    .frameBlock(Blocks.DIAMOND_BLOCK)
+                    .frameBlock(Blocks.PURPUR_BLOCK)
                     .lightWithItem(Items.ENDER_EYE)
                     .destDimID(new ResourceLocation("the_end"))
-                    .tintColor(45,65,101)
+                    .tintColor(138,43,226)
                     .registerPortal();
         }
     }
